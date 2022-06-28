@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import torch.nn as nn
+from ..utils.checkpoint import load_checkpoint
 
 
 class SiLU(nn.Module):
@@ -257,7 +258,7 @@ class DetectBackend(nn.Module):
 
         super().__init__()
         assert isinstance(weights, str) and Path(weights).suffix == '.pt', f'{Path(weights).suffix} format is not supported.'
-        from yolov6.utils.checkpoint import load_checkpoint
+        # from yolov6.utils.checkpoint import load_checkpoint
         model = load_checkpoint(weights, map_location=device)
         stride = int(model.stride.max())
         self.__dict__.update(locals())  # assign all variables to self
@@ -267,3 +268,8 @@ class DetectBackend(nn.Module):
         if isinstance(y, np.ndarray):
             y = torch.tensor(y, device=self.device)
         return y
+
+
+
+
+
