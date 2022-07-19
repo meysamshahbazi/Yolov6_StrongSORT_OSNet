@@ -102,6 +102,7 @@ def run(
 
     # Load model
     device = select_device(device)
+
     # model = DetectMultiBackend(yolo_weights, device=device, dnn=dnn, data=None, fp16=half)
     # print(yolo_weights)
     model = DetectBackend(weights=yolo_weights[0],device=device,dnn=dnn)
@@ -300,7 +301,7 @@ def parse_opt():
     parser.add_argument('--source', type=str, default='0', help='file/dir/URL/glob, 0 for webcam')  
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[1080,1920], help='inference size h,w')
     parser.add_argument('--conf-thres', type=float, default=0.45, help='confidence threshold')
-    parser.add_argument('--iou-thres', type=float, default=0.5, help='NMS IoU threshold')
+    parser.add_argument('--iou-thres', type=float, default=0.15, help='NMS IoU threshold')
     parser.add_argument('--max-det', type=int, default=10000000, help='maximum detections per image')
     parser.add_argument('--device', default='0', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--show-vid', action='store_true', help='display tracking video results')
@@ -318,7 +319,7 @@ def parse_opt():
     parser.add_argument('--project', default=ROOT / 'runs/track', help='save results to project/name')
     parser.add_argument('--name', default='exp', help='save results to project/name')
     parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
-    parser.add_argument('--line-thickness', default=3, type=int, help='bounding box thickness (pixels)')
+    parser.add_argument('--line-thickness', default=1, type=int, help='bounding box thickness (pixels)')
     parser.add_argument('--hide-labels', default=False, action='store_true', help='hide labels')
     parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
     parser.add_argument('--hide-class', default=False, action='store_true', help='hide IDs')
