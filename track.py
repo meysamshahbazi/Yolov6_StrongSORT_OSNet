@@ -260,7 +260,7 @@ def run(
             # Stream results
             im0 = annotator.result()
             # if show_vid:
-            im0 = cv2.resize(im0,(2560,1440))
+            # im0 = cv2.resize(im0,(2560,1440))
             cv2.imshow(str(p), im0)
             cv2.waitKey(1) 
 
@@ -300,9 +300,9 @@ def parse_opt():
     parser.add_argument('--config-strongsort', type=str, default='strong_sort/configs/strong_sort.yaml')
     parser.add_argument('--source', type=str, default='0', help='file/dir/URL/glob, 0 for webcam')  
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[1080,1920], help='inference size h,w')
-    parser.add_argument('--conf-thres', type=float, default=0.45, help='confidence threshold')
-    parser.add_argument('--iou-thres', type=float, default=0.15, help='NMS IoU threshold')
-    parser.add_argument('--max-det', type=int, default=10000000, help='maximum detections per image')
+    parser.add_argument('--conf-thres', type=float, default=0.5, help='confidence threshold')
+    parser.add_argument('--iou-thres', type=float, default=0.5, help='NMS IoU threshold')
+    parser.add_argument('--max-det', type=int, default=1000, help='maximum detections per image')
     parser.add_argument('--device', default='0', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--show-vid', action='store_true', help='display tracking video results')
     parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
